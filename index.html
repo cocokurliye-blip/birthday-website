@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Grand Prix</title>
+    <style>
+        /* Importing a sporty, clean font */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+        body {
+            background-color: #15151e; /* F1 Dark Grey */
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            background-color: #1e1e28;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-top: 8px solid #e10600; /* F1 Red Accent */
+        }
+
+        .screen {
+            display: none; /* Hides all screens by default */
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .screen.active {
+            display: block; /* Shows the active screen */
+        }
+
+        h1 {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .lap-counter {
+            color: #e10600;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        button {
+            background-color: #e10600;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(225, 6, 0, 0.4);
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #ff1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 6, 0, 0.6);
+        }
+
+        .gift-reveal {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #2a2a36;
+            border-radius: 15px;
+            border-left: 5px solid #00d2be; /* Petronas/Mercedes Green accent for gifts */
+            animation: slideDown 0.4s ease-in-out;
+        }
+
+        .gift-reveal h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #00d2be;
+        }
+
+        .next-lap-btn {
+            background-color: #ffffff;
+            color: #15151e;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .next-lap-btn:hover {
+            background-color: #e0e0e0;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Checkered flag styling for the end */
+        .checkered {
+            background-image: 
+              linear-gradient(45deg, #000 25%, transparent 25%), 
+              linear-gradient(-45deg, #000 25%, transparent 25%), 
+              linear-gradient(45deg, transparent 75%, #000 75%), 
+              linear-gradient(-45deg, transparent 75%, #000 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            background-color: #fff;
+            height: 40px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- COVER PAGE -->
+    <div id="intro" class="screen active">
+        <!-- CUSTOMIZE TEXT HERE -->
+        <h1>Manipal Grand Prix *Birthday Edition*</h1>
+        <p>
+            Welcome to the paddock! The FIA, along with a bunch of teams have come forward to conduct a very special race just for you. 
+            There might be some unexpected issues on the track today, but don't worry, your pit crew has everything you need (lets hope!).
+        </p>
+        <p>Are you ready to start your engine?</p>
+        <button onclick="nextScreen('intro', 'lap1')">🏎️ Start First Lap</button>
+    </div>
+
+    <!-- LAP 1: SOCKS (Tire Issue) -->
+    <div id="lap1" class="screen">
+        <div class="lap-counter">Lap 1 / 5</div>
+        <!-- CUSTOMIZE TEXT HERE -->
+        <h1>SHIT...wrong tires</h1>
+        <p>you started a 5 lap race with hards. what were you thinking? pit immediately and replace your tires. </p>
+        
+        <button id="btn-pit1" onclick="revealGift('gift1', 'btn-pit1')">BOX BOX!</button>
+
+        <div id="gift1" class="gift-reveal">
+            <h2>OPEN PACKAGE 1</h2>
+            <!-- CUSTOMIZE TEXT HERE -->
+            <p><strong>wow what cute tires!</strong><br>you've now gotten the softest of the soft tires. you better be speedier than flash now. good luck!</p>
+            <button class="next-lap-btn" onclick="nextScreen('lap1', 'lap2')">Next Lap 🏁</button>
+        </div>
+    </div>
+
+    <!-- LAP 2: TSHIRT (Front Wing) -->
+    <div id="lap2" class="screen">
+        <div class="lap-counter">Lap 2 / 5</div>
+        <!-- CUSTOMIZE TEXT HERE -->
+        <h1>Collision at Turn 1!</h1>
+        <p>Oh no! A random bus came in your way. Manipal truck drivers really dont care...
+SHIT SHIT SHIT YOUR FRONT WING BROKE. We're losing downforce! PIT NOW!!!!</p>
+        
+        <button id="btn-pit2" onclick="revealGift('gift2', 'btn-pit2')">BOX BOX!</button>
+
+        <div id="gift2" class="gift-reveal">
+            <h2>OPEN PACK 2</h2>
+            <!-- CUSTOMIZE TEXT HERE -->
+            <p><strong>hopefully this provides you with the necessary downforce. use the force sam. use the force. </strong><br>Your crew has replaced the broken front wing, you're looking fresh for the rest of the race!</p>
+            <button class="next-lap-btn" onclick="nextScreen('lap2', 'lap3')">Next Lap 🏁</button>
+        </div>
+    </div>
+
+    <!-- LAP 3: NECKLACES (Strategy Change) -->
+    <div id="lap3" class="screen">
+        <div class="lap-counter">Lap 3 / 5</div>
+        <!-- CUSTOMIZE TEXT HERE -->
+        <h1>STRATEGY CHANGE</h1>
+        <p>It looks like that LAP 1 pit cost us a lot of time. We need a sudden change of strategy FAST to get ahead of the pack! PIT AGAIN</p>
+        
+        <button id="btn-pit3" onclick="revealGift('gift3', 'btn-pit3')">BOX BOX!</button>
+
+        <div id="gift3" class="gift-reveal">
+            <h2>OPEN PACKAGE 3</h2>
+            <!-- CUSTOMIZE TEXT HERE -->
+            <p><strong>sooo...unfortunately ferrari was in charge of your strategy...</strong><br>The best ferrarri could come up with were good luck charms so...good luck with that. but hey atleast you're dripped out now! ferrari is taking care of their driver's mental health for once</p>
+            <button class="next-lap-btn" onclick="nextScreen('lap3', 'lap4')">Next Lap 🏁</button>
+        </div>
+    </div>
+
+    <!-- LAP 4: ENERGY DRINK (Fuel Issue) -->
+    <div id="lap4" class="screen">
+        <div class="lap-counter">Lap 4 / 5</div>
+        <!-- CUSTOMIZE TEXT HERE -->
+        <h1>Losing Power!</h1>
+        <p>The telemetry is showing low fuel pressure. The car is slowing down on the straights (even though manipal barely has any 💔), we need to refuel immediately!</p>
+        
+        <button id="btn-pit4" onclick="revealGift('gift4', 'btn-pit4')">BOX BOX! PIT RIGHT NOW!</button>
+
+        <div id="gift4" class="gift-reveal">
+            <h2>OPEN PACKAGE 4</h2>
+            <!-- CUSTOMIZE TEXT HERE -->
+            <p><strong>damn u pitted like one monster there. proud of u. </strong><br>now that you have your fuel, get tf back on the track we are losing horribly.</p>
+            <button class="next-lap-btn" onclick="nextScreen('lap4', 'lap5')">Next Lap 🏁</button>
+        </div>
+    </div>
+
+    <!-- LAP 5: LETTER (Team Radio) -->
+    <div id="lap5" class="screen">
+        <div class="lap-counter">Final Lap (5 / 5)</div>
+        <!-- CUSTOMIZE TEXT HERE -->
+        <h1>Incoming Team Radio...</h1>
+        <p>You are on the final lap, but your Race Engineer is coming on the radio with an urgent, secret message for you.</p>
+        
+        <button id="btn-pit5" onclick="revealGift('gift5', 'btn-pit5')">🎧 Tune in to Radio</button>
+
+        <div id="gift5" class="gift-reveal">
+            <h2>OPEN PACK 5</h2>
+            <!-- CUSTOMIZE TEXT HERE -->
+            <p><strong>A Letter!</strong><br>A personal debrief and a special message from your favorite person on the pit wall (SHE BETTER BE YOUR FAVOURITE)</p>
+            <button class="next-lap-btn" onclick="nextScreen('lap5', 'outro')">Cross the Finish Line 🏁</button>
+        </div>
+    </div>
+
+    <!-- OUTRO / FINISH PAGE -->
+    <div id="outro" class="screen">
+        <div class="checkered"></div>
+        <!-- CUSTOMIZE TEXT HERE -->
+        <h1>CHEQUERED FLAG!</h1>
+        <p><strong>P1! You won the race! 🏆</strong></p>
+        <p>DAMN! i honestly didnt expect this. those super softs really worked. and ferrari was ON TO something with those good luck charms.</p>
+        <br>
+        <p><em>(Cue the F1 theme music!)</em></p>
+    </div>
+
+</div>
+
+<script>
+    // Function to move from one screen to the next
+    function nextScreen(currentId, nextId) {
+        // Hide current screen
+        document.getElementById(currentId).classList.remove('active');
+        // Show next screen
+        document.getElementById(nextId).classList.add('active');
+    }
+
+    // Function to reveal the gift on the current lap
+    function revealGift(giftId, btnId) {
+        // Show the gift div
+        document.getElementById(giftId).style.display = 'block';
+        // Hide the "Pit" button so they have to click Next Lap
+        document.getElementById(btnId).style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
